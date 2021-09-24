@@ -47,6 +47,7 @@ namespace ClientesAPI.Controllers
                 return BadRequest();
 
             _contexto.Entry(cliente).State = EntityState.Modified;
+            _contexto.Entry(cliente.Endereco).State = EntityState.Modified;
 
             try
             {
