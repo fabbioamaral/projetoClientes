@@ -13,8 +13,9 @@ namespace ClientesAPI.Data.Map
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.ToTable("Clientes");
-            builder.HasKey(x => x.CPF);
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.CPF).HasMaxLength(11).HasColumnType("varchar(11)");
+            builder.HasIndex(x => x.CPF).IsUnique();
             builder.Property(x => x.Nome).IsRequired().HasMaxLength(120).HasColumnType("varchar(60)");
             builder.Property(x => x.Sobrenome).IsRequired().HasMaxLength(120).HasColumnType("varchar(120)");
             builder.Property(x => x.Nacionalidade).IsRequired().HasMaxLength(70).HasColumnType("varchar(70)");
