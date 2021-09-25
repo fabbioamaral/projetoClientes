@@ -24,14 +24,14 @@ namespace ClientesAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
         {
-            return await _contexto.Clientes.ToListAsync();
+            return await _contexto.Clientes.Include(x=>x.Endereco).ToListAsync();
         }
 
         // GET: api/Cliente/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Cliente>> GetClientePorId(int id)
         {
-            var cliente = await _contexto.Clientes.FindAsync(id);
+            var cliente = await _contexto.Clientes.Include(x => x.Endereco).FirstOrDefaultAsync(x => x.Id == id);
 
             if (cliente == null)
                 return NotFound();

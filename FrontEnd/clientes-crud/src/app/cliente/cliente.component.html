@@ -17,15 +17,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Fábio</td>
-                <td>Amaral Jr</td>
-                <td>123.456.123-12</td>
-                <td>Brasileiro</td>
-                <td>fabio@gmail.com</td>
-                <td>(31) 99784-4723</td>
-                <td>Rua B, 34771-147, Contagem - Minas Gerais</td>
+            <tr *ngFor="let cliente of clientes">
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nome}}</td>
+                <td>{{cliente.sobrenome}}</td>
+                <td>{{cliente.CPF}}</td>
+                <td>{{cliente.nacionalidade}}</td>
+                <td>{{cliente.email}}</td>
+                <td>{{cliente.telefone}}</td>
+                <td>{{cliente.endereco.logradouro}}, 
+                    {{cliente.endereco.cep}}, 
+                    {{cliente.endereco.cidade}} -  
+                    {{cliente.endereco.estado}}                     
+                </td>
                 <td>
                     <button class="btn btn-warning" style="margin: 0 10px 10px 0;">Editar</button>
                     <button class="btn btn-danger">Excluir</button>
