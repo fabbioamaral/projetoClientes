@@ -20,6 +20,11 @@ export class ClienteService {
     return this.httpClient.get<Cliente[]>(this._url);
   }
 
+  // POST
+  postCliente(cliente: Cliente): Observable<Cliente>{
+    return this.httpClient.post<Cliente>(this._url, cliente);
+  }
+
 
 
 }

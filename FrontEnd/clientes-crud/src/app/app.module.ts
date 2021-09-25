@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     RouterModule.forRoot([
       {path:'clientes', component: ClienteComponent},
+      {path:'clientes/criar-cliente', component: CriarClienteComponent}
       
     ]),
   ],
