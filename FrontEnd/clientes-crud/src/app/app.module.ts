@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router'
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './cliente/cliente.component';
@@ -24,10 +25,13 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path:'', component: ClienteComponent},
       {path:'clientes', component: ClienteComponent},
-      {path:'clientes/criar-cliente', component: CriarClienteComponent}
+      {path:'clientes/criar-cliente', component: CriarClienteComponent},
+      {path:'clientes/editar-cliente/:id', component: EditarClienteComponent}
       
     ]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

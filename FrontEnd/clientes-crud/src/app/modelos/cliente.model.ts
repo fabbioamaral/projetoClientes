@@ -1,12 +1,12 @@
-import { Endereco } from "./endereco.model";
+import { IEndereco } from "./endereco.model";
 
-export interface Cliente {
-    id: number,
+export interface ICliente {
+    id:number,
     nome: string,
     sobrenome: string,
-    CPF: string,
+    cpf: string,
     nacionalidade: string,
     email: string,
     telefone: string,
-    endereco: Endereco;
+    endereco: IEndereco
 }
