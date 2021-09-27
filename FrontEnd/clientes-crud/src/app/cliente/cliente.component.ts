@@ -26,5 +26,13 @@ export class ClienteComponent implements OnInit {
     this.clientes=this.clientes.filter(item=>item.id!=id);    
   }
 
+  buscarCliente(nome:string){
+    this.clientes=this.clientes.filter(item=>item.nome==nome); 
+
+    if(nome=='')
+    this.clienteService.getClientes()
+    .subscribe(res => this.clientes = res
+    );
+  }
 
 }

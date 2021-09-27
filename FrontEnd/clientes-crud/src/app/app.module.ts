@@ -9,8 +9,12 @@ import { AppComponent } from './app.component';
 import { ClienteComponent } from './cliente/cliente.component';
 import { CriarClienteComponent } from './cliente/criar-cliente/criar-cliente.component';
 import { EditarClienteComponent } from './cliente/editar-cliente/editar-cliente.component';
-import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,6 @@ import { HeaderComponent } from './header/header.component';
     ClienteComponent,
     CriarClienteComponent,
     EditarClienteComponent,
-    FooterComponent,
     HeaderComponent
   ],
   imports: [
@@ -31,7 +34,10 @@ import { HeaderComponent } from './header/header.component';
       {path:'clientes/editar-cliente/:id', component: EditarClienteComponent}
       
     ]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

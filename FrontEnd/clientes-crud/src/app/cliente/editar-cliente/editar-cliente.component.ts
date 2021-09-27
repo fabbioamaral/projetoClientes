@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from 'src/app/cliente.service';
 import { ICliente } from 'src/app/modelos/cliente.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-editar-cliente',
@@ -60,7 +61,7 @@ export class EditarClienteComponent implements OnInit {
   };
   estados:string[]=["AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO"];
 
-  constructor(private clienteService:ClienteService, private route:ActivatedRoute, private router:Router) { }
+  constructor(private clienteService:ClienteService, private route:ActivatedRoute, private router:Router, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     
@@ -93,7 +94,11 @@ export class EditarClienteComponent implements OnInit {
     this.cliente.endereco.cidade=this.formularioEditarCliente.get('cidade')?.value;
     this.cliente.endereco.estado=this.formularioEditarCliente.get('estado')?.value;
     
-    this.clienteService.putCliente(this.id,this.cliente).subscribe();
+    this.clienteService.putCliente(this.id,this.cliente)
+    .subscribe(
+      res=>{this.toastr.info('Cliente atualizado com sucesso', 'Edição de Cliente')},
+      err=>{this.toastr.error('ERRO! Não foi possível atualizar o cliente', 'Edição de Cliente')}
+    );
     this.router.navigateByUrl('/clientes');
   }
 

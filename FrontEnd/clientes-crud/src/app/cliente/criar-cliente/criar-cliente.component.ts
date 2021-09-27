@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { ClienteService } from 'src/app/cliente.service';
+import { ConsultaCepService } from 'src/app/consulta-cep.service';
 import { ICliente } from 'src/app/modelos/cliente.model';
-import { ClienteComponent } from '../cliente.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-criar-cliente',
@@ -43,10 +45,28 @@ export class CriarClienteComponent implements OnInit {
       Validators.required])
   });
 
-  constructor(private clienteService:ClienteService) { }
+  constructor(private clienteService:ClienteService, private cepService:ConsultaCepService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
   }
+
+  consultaCEP(){
+    const cep = this.formularioCriarCliente.get('cep')?.value;
+
+    if(cep!=null && cep!==''){
+      this.cepService.consultaCEP(cep)
+        ?.subscribe(dados=>this.populaDadosForm(dados,this.formularioCriarCliente));
+    }
+  }
+
+
+populaDadosForm(dados:any,formulario:FormGroup){
+  formulario.patchValue({
+    logradouro:dados.logradouro,
+    cidade:dados.localidade,
+    estado:dados.uf    
+  })
+}
 
   criarCliente(){    
     
@@ -67,8 +87,17 @@ export class CriarClienteComponent implements OnInit {
       telefone:this.formularioCriarCliente.get('telefone')?.value
     }
 
-    this.clienteService.postCliente(cliente).subscribe();
-    this.formularioCriarCliente.reset();
+    this.clienteService.postCliente(cliente)
+      .subscribe(
+        res=>{
+          this.formularioCriarCliente.reset();
+          this.toastr.success('Cliente criado com sucesso!', 'Criação de Cliente');
+        },
+        err=>{
+          this.toastr.error('Erro!', 'Criação de Cliente');
+        }
+      );
+    
   }
 
 }
