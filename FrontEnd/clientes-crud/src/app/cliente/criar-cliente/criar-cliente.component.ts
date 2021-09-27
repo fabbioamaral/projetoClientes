@@ -5,6 +5,7 @@ import { ClienteService } from 'src/app/cliente.service';
 import { ConsultaCepService } from 'src/app/consulta-cep.service';
 import { ICliente } from 'src/app/modelos/cliente.model';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-criar-cliente',
@@ -45,7 +46,10 @@ export class CriarClienteComponent implements OnInit {
       Validators.required])
   });
 
-  constructor(private clienteService:ClienteService, private cepService:ConsultaCepService, private toastr:ToastrService) { }
+  constructor(private clienteService:ClienteService, 
+              private cepService:ConsultaCepService, 
+              private toastr:ToastrService,
+              private route:Router) { }
 
   ngOnInit(): void {
   }
@@ -92,9 +96,11 @@ populaDadosForm(dados:any,formulario:FormGroup){
         res=>{
           this.formularioCriarCliente.reset();
           this.toastr.success('Cliente criado com sucesso!', 'Criação de Cliente');
+          setTimeout(()=>this.route.navigateByUrl('/clientes'),2000);
         },
         err=>{
           this.toastr.error('Erro!', 'Criação de Cliente');
+          console.log(err);
         }
       );
     

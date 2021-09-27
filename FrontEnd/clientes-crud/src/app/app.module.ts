@@ -13,8 +13,11 @@ import { HeaderComponent } from './header/header.component';
 
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ToastrModule } from 'ngx-toastr';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { CpfPipe } from './cpf.pipe';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = {}; //para rpdar p ngx-mask
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
     ClienteComponent,
     CriarClienteComponent,
     EditarClienteComponent,
-    HeaderComponent
+    HeaderComponent,
+    CpfPipe
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

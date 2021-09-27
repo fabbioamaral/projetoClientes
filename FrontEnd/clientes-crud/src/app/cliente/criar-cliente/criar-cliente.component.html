@@ -12,7 +12,12 @@
 
             <div class="col-lg-3">
                 <label>CPF</label>
-                <input class="form-control form-control-sm" type="text" placeholder="Ex.: 111.111.111-11" formControlName="cpf"> 
+                <input 
+                class="form-control form-control-sm" 
+                type="text" 
+                placeholder="Ex.: 111.111.111-11" 
+                formControlName="cpf"
+                mask="000.000.000-00"> 
             </div>
     
         </div>
@@ -35,7 +40,13 @@
             
             <div class="col-lg-4 ">
                 <label>CEP</label>
-                <input class="form-control form-control-sm" type="text" placeholder="Ex.: 01011-100" formControlName="cep" (blur)="consultaCEP()"> 
+                <input
+                 class="form-control form-control-sm"
+                 type="text" 
+                 placeholder="Ex.: 01011-100" 
+                 formControlName="cep" 
+                 (blur)="consultaCEP()"
+                 mask="00000-000"> 
             </div>
     
             <div class="col-lg-4 ">
@@ -72,7 +83,13 @@
     
             <div class="col-lg-6 ">
                 <label>Telefone</label>
-                <input class="form-control form-control-sm" type="tel" placeholder="Ex.: (11) 2020-3030" formControlName="telefone">
+                <input 
+                class="form-control form-control-sm" 
+                type="tel" 
+                placeholder="Ex.: (11) 2020-3030" 
+                formControlName="telefone"
+                [dropSpecialCharacters]="false"
+                mask="(00) 00000-0000||(00) 0000-0000">
             </div>
     
         </div>
