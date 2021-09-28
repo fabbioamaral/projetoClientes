@@ -13,7 +13,8 @@ export class ClienteComponent implements OnInit {
   clientes!: ICliente[];
   
 
-  constructor(private clienteService: ClienteService, private router:Router) { }
+  constructor(private clienteService: ClienteService, 
+              private router:Router) { }
   
   ngOnInit(): void {
     this.clienteService.getClientes()
@@ -23,7 +24,7 @@ export class ClienteComponent implements OnInit {
 
   excluirCliente(id:number){    
     this.clienteService.deleteCliente(id).subscribe();
-    this.clientes=this.clientes.filter(item=>item.id!=id);    
+    this.clientes=this.clientes.filter(item=>item.id!=id);
   }
 
   buscarCliente(nome:string){

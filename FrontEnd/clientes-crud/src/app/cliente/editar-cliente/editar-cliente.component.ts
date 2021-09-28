@@ -96,10 +96,13 @@ export class EditarClienteComponent implements OnInit {
     
     this.clienteService.putCliente(this.id,this.cliente)
     .subscribe(
-      res=>{this.toastr.info('Cliente atualizado com sucesso', 'Edição de Cliente')},
+      res=>{
+        this.toastr.info('Cliente atualizado com sucesso', 'Edição de Cliente');
+        setInterval(()=>this.router.navigateByUrl('/clientes'),2000);
+      },
       err=>{this.toastr.error('ERRO! Não foi possível atualizar o cliente', 'Edição de Cliente')}
     );
-    this.router.navigateByUrl('/clientes');
+    
   }
 
 }
